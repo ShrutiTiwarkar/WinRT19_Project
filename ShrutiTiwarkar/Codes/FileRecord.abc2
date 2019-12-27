@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\CLSID\{80FD708F-2B78-48F6-874B-C16BCCD32A4B}]
+@="MyComDll"
+[HKEY_CLASSES_ROOT\CLSID\{80FD708F-2B78-48F6-874B-C16BCCD32A4B}\InprocServer32]
+@="C:\\Windows\\System32\\MyDLL\\SDK_Project\\AddReadFillDll.dll"
+
+
+
