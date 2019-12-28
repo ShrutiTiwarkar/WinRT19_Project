@@ -785,7 +785,7 @@ BOOL CALLBACK AboutDlgProc(HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 				//buffer[1024] = pIRead->ReadRecord(buffer, hFile2);
 				CloseHandle(hFile1);
 				CloseHandle(hFile2);
-				MessageBox(NULL, TEXT("Details Added in file named with Record.txt \nCreated in same folder"), TEXT("MESSAGE"), MB_OK);
+				MessageBox(NULL, TEXT("Details Added in file named with Record.txt \nCreated in same folder"), TEXT("MESSAGE"), MB_OK | MB_ICONINFORMATION);
 				EndDialog(hDlg, 0);
 			}
 			else {
@@ -860,7 +860,7 @@ BOOL ValidateName(HWND hwnd, TCHAR *str) {
 
 	if (*str == NULL) {
 		// String is NULL
-		MessageBox(hwnd, TEXT("Name cannot be empty"), TEXT("Message"), MB_OK | MB_ICONWARNING);
+		MessageBox(hwnd, TEXT("Name cannot be empty"), TEXT("Message..."), MB_OK | MB_ICONWARNING);
 		return FALSE;
 	}
 	else
@@ -878,7 +878,7 @@ BOOL ValidateName(HWND hwnd, TCHAR *str) {
 				flag =  FALSE;
 			}
 			if (flag == FALSE) {
-				MessageBox(hwnd, TEXT("Name must be in String"), TEXT("Message"), MB_OK | MB_ICONWARNING);
+				MessageBox(hwnd, TEXT("Name must be in String"), TEXT("Message..."), MB_OK | MB_ICONWARNING);
 				return FALSE;
 			}
 			str++;
@@ -912,7 +912,7 @@ BOOL ValidatePhone(HWND hwnd, TCHAR *PhoneNumber) {
 			flag = TRUE;
 		}
 		else {
-			MessageBox(hwnd, TEXT("Please Enter Valid Number"), TEXT("Message..."), MB_ICONWARNING); 
+			MessageBox(hwnd, TEXT("Please Enter Valid Number"), TEXT("Message..."), MB_OK | MB_ICONWARNING); 
 			flag = FALSE;
 			break;
 		}
@@ -921,11 +921,11 @@ BOOL ValidatePhone(HWND hwnd, TCHAR *PhoneNumber) {
 	}
 	if (count > 10 && flag == TRUE) {
 		// check the count 
-		MessageBox(hwnd, TEXT("Please Enter Valid Number"), TEXT("Message..."), MB_ICONWARNING);
+		MessageBox(hwnd, TEXT("Please Enter Valid Number"), TEXT("Message..."),MB_OK | MB_ICONWARNING);
 		flag = FALSE;
 	}
 	else if (count < 10 && flag == TRUE) {
-		MessageBox(hwnd, TEXT("Please Enter Valid Number"), TEXT("Message..."), MB_ICONWARNING);
+		MessageBox(hwnd, TEXT("Please Enter Valid Number"), TEXT("Message..."),MB_OK | MB_ICONWARNING);
 		flag = FALSE;
 	}
 	else if (flag == TRUE) {
@@ -969,7 +969,7 @@ BOOL ValidateEmail(HWND hwnd, TCHAR *email) {
 		return TRUE;
 	}
 	else {
-		MessageBox(hwnd, TEXT("Please Enter Valid Email id"), TEXT("Message..."), MB_ICONWARNING);
+		MessageBox(hwnd, TEXT("Please Enter Valid Email id"), TEXT("Message..."),MB_OK | MB_ICONWARNING);
 		return FALSE;
 	}
 }
@@ -1110,7 +1110,7 @@ BOOL ValidateDate(HWND hwnd, TCHAR *DOB, TCHAR *MOB, TCHAR *YOB) {
 
 	
 	if (flag1 == FALSE) {
-		MessageBox(NULL, TEXT("Invalid Date"), TEXT("MESSAGE"), MB_OK);
+		MessageBox(NULL, TEXT("Invalid Date"), TEXT("MESSAGE"), MB_OK | MB_ICONWARNING);
 		return FALSE;
 	}
 	
@@ -1231,11 +1231,12 @@ void TokenizeAndAddMember() {
 		return;
 	}
 	// Read whole file "Temp.txt" in this buffer
+	SetFilePointer(hFile2, NULL, NULL, FILE_BEGIN);
 	buffer[10240] = pIRead->ReadRecord(buffer, hFile2);
 
 
 	static int i = 0;
-	TCHAR person[512];
+	static TCHAR person[512];
 
 	while (buffer[i] != '\0')
 	{
@@ -1257,17 +1258,18 @@ void TokenPerson(int *i, TCHAR *person) {
 
 	int j = 0; 
 	int k = *i;
-	TCHAR RegNumber[10];
-	TCHAR First[20];
-	TCHAR Middle[20];
-	TCHAR Last[20];
+	TCHAR RegNumber[5];
+	TCHAR First[30];
+	TCHAR Middle[30];
+	TCHAR Last[30];
 	TCHAR dob[3];
 	TCHAR mob[3];
 	TCHAR yob[5];
 	TCHAR gender[10];
-	TCHAR email[20];
+	TCHAR email[40];
 	TCHAR phone[15];
 
+	
 	//Get Single person Record
 	if (buffer[k] == '<') {
 		k++;
@@ -1287,7 +1289,7 @@ void TokenPerson(int *i, TCHAR *person) {
 		TokenGender(person, gender);
 
 		TokenEmail(person, email);
-
+		//MessageBox(NULL, (email), TEXT("Email after Return"), MB_OK);
 		TokenPhone(person, phone);
 
 		if (displayFlag == FALSE) {
@@ -1313,14 +1315,11 @@ void TokenPerson(int *i, TCHAR *person) {
 	}
 	*i = k;
 	k++;
-
 	//DisplayAll(hwnd);
-	
 }
 
 void InsertNode() {
 	
-
 	if (Head == NULL) {
 		//MessageBox(NULL, newNode->FirstName, TEXT("When Head is NULL"), MB_OK);
 		Head = newNode;
