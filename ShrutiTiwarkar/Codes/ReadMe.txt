@@ -78,6 +78,7 @@ Project Description :
 					iv. Email-id
 						- enter Email-id.	
 						  example "NAMEOrNumber@gmail.com".
+						- no symbols.
 						- Field should not be empty.
 					v. Phone Number
 						- Must be Numbers.

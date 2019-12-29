@@ -1159,6 +1159,10 @@ void AddToFormatedFile(HWND hwnd) {
 		//newNode->Gender = TEXT("FEMALE");
 		wsprintf(newNode->Gender, TEXT("Female"));
 	}
+	else {
+		CheckDlgButton(hwnd, (int)IDC_MALE, BST_CHECKED);
+		wsprintf(newNode->Gender, TEXT("Male"));
+	}
 
 	GetWindowText(hDay, (LPWSTR)newNode->DOB, 3);
 	//GetDlgItemText(hwnd, (int)IDC_DOB, (LPWSTR)newNode->DOB, 3);
