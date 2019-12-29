@@ -99,7 +99,7 @@ Project Description :
 				
 				
 		7. All this process creates two Files in the Directory
-			- Usese must view "Record.txt"
+			- User must view "Record.txt"
 			- This File displays all the entries done uptill Now.
 			
 		8. Temp.txt
